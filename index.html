@@ -1,26 +1,37 @@
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" type="text/css" href="./index.css">
-        <meta name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1">
-        <meta name="keywords" content="">
-        <meta name="description" content="">
-        <meta name="author" content="Vote HN">
+<html>
+    <head></head>
+    <body>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Pseudo</th>
+                    <th>Votes</th>
+                </tr>
+            </thead>
+            <tbody id="votesTableContent">
+            </tbody>
+        </table>
+        
+        <script>
+            var serverToken = "F2MQRFMGK4"; // Renseignez la token de votre serveur présente sur votre fiche Top-Serveurs
 
-        <title>Vote HN</title>
-
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
-    </head>
-<body>
-
-<h1>Vote serveur Havre Noir</h1>
-<p>Liste des votes</p>
-
-<div id="votes"></div>
-
-</body>
-<script type="module" src="./index.js"></script>
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://api.top-serveurs.net/v1/servers/' + serverToken + '/players-ranking');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var responseContent = JSON.parse(xhr.responseText);
+                    var votesTableContent = '';
+                    responseContent.players.forEach(function(player) {
+                        votesTableContent += '<tr><td>' + player.playername + '</td><td>' + player.votes + '</td></tr>';
+                    });
+                    document.getElementById('votesTableContent').innerHTML = votesTableContent;
+                } else {
+                    alert('Erreur lors la récupération des données');
+                }
+            };
+            xhr.send();
+        </script>
+    </body>
 </html>
