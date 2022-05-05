@@ -1,5 +1,5 @@
 <?php
-    $server_token = 'F2MQRFMGK4';  // Renseignez la token de votre serveur présente sur votre fiche Top-Serveurs
+    $server_token = 'IYTIE1QABS';  // Renseignez la token de votre serveur présente sur votre fiche Top-Serveurs
     $response = @file_get_contents("https://api.top-serveurs.net/v1/servers/$server_token/players-ranking");
     $json = json_decode($response);
     if (!$json || $json->code !== 200) {

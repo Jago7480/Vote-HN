@@ -1,5 +1,5 @@
 <?php
-    $server_token = 'F2MQRFMGK4'; // Renseignez la token de votre serveur présente sur votre fiche Top-Serveurs
+    $server_token = 'IYTIE1QABS'; // Renseignez la token de votre serveur présente sur votre fiche Top-Serveurs
     $ch = curl_init("https://api.top-serveurs.net/v1/servers/$server_token/players-ranking");
     curl_setopt_array( $ch, [
         CURLOPT_RETURNTRANSFER => true,
