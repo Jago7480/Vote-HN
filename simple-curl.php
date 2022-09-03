@@ -1,6 +1,6 @@
 <?php
     $server_token = 'IYTIE1QABS'; // Renseignez la token de votre serveur présente sur votre fiche Top-Serveurs
-    $ch = curl_init("https://api.top-serveurs.net/v1/servers/$server_token/players-ranking");
+    $ch = curl_init("https://api.top-serveurs.net/v1/servers/$server_token/players-ranking?type=lastMonth");
     curl_setopt_array( $ch, [
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HTTPHEADER => ['Content-type: application/json']
